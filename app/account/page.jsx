@@ -26,5 +26,16 @@ export default page;
   console.log(await prisma.room.findMany());
 
   // console.log(getMyself.name);
+
+
+
+
+  const users = await prisma.user.findMany({
+  where: {
+    email: {
+      endsWith: 'prisma.io',
+    },
+  },
+})
   */
 }
