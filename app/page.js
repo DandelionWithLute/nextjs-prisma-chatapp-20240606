@@ -1,9 +1,13 @@
-import React from 'react'
+"use client";
+import React from "react";
+import Link from "next/link";
 
 const page = () => {
   return (
-    <div>page</div>
-  )
-}
+    <div>
+      <Link href={"/account"}>account</Link>
+    </div>
+  );
+};
 
-export default page
+export default page;

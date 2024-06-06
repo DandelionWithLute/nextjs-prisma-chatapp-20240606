@@ -13,16 +13,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
-}
+// model Post {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   title     String   @db.VarChar(255)
+//   content   String?
+//   published Boolean  @default(false)
+//   author    User     @relation(fields: [authorId], references: [id])
+//   authorId  Int
+// }
 
 model Profile {
   id     Int     @id @default(autoincrement())
@@ -32,9 +32,30 @@ model Profile {
 }
 
 model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  posts   Post[]
-  profile Profile?
+  id       Int        @id @default(autoincrement())
+  email    String     @unique
+  name     String?
+  profile  Profile?
+  Room     Room[]
+  RoomData RoomData[]
+}
+
+model Room {
+  id        String     @id @default(uuid())
+  createdAt DateTime   @default(now())
+  name      String
+  userEmail String
+  user      User       @relation(fields: [userEmail], references: [email])
+  RoomData  RoomData[]
+}
+
+model RoomData {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  text      String
+  image     String?
+  userEmail String
+  user      User     @relation(fields: [userEmail], references: [email])
+  roomId    String
+  Room      Room     @relation(fields: [roomId], references: [id])
 }
