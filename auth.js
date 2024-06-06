@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 // Your own logic for dealing with plaintext password strings; be careful!
-// import { saltAndHashPassword } from "@/utils/password"
+import { saltAndHashPassword } from "@/utils/password"
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -16,10 +16,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         let user = null
  
         // logic to salt and hash password
-        // const pwHash = saltAndHashPassword(credentials.password)
+        const pwHash = saltAndHashPassword(credentials.password)
  
         // logic to verify if user exists
-        // user = await getUserFromDb(credentials.email, pwHash)
+        user = await getUserFromDb(credentials.email, pwHash)
  
         if (!user) {
           // No user found, so this is their first attempt to login

@@ -1,8 +1,8 @@
 // This file is for authjs
 // https://www.npmjs.com/package/bcrypt
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const myPlaintextPassword = "userInputToGet";
+// const myPlaintextPassword = "userInputToGet";
 
 // Technique 1 (generate a salt and hash on separate function calls):
 // bcrypt.genSalt(saltRounds, function(err, salt) {
@@ -12,12 +12,13 @@ const myPlaintextPassword = "userInputToGet";
 // });
 
 // Technique 2 (auto-gen a salt and hash):
-let hashedPassword;
-bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
-  // Store hash in your password DB.
-  console.log(hash);
-  hashedPassword = hash;
-});
-
+let hashedPassword = async (rawPassword) => {
+  bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
+    // Store hash in your password DB.
+    console.log(hash);
+    hashedPassword = hash;
+  });
+};
 console.log(hashedPassword);
-export default hashedPassword
+export default hashedPassword;
+

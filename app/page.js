@@ -1,11 +1,14 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import styles from "./page.module.css"
 
 const page = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <Link href={"/account"}>account</Link>
+      <Link href={"/login"}>login</Link>
+      <Link href={"/register"}>register</Link>
     </div>
   );
 };
