@@ -12,13 +12,7 @@ const saltRounds = 10;
 // });
 
 // Technique 2 (auto-gen a salt and hash):
-let hashedPassword = async (rawPassword) => {
-  bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
-    // Store hash in your password DB.
-    console.log(hash);
-    hashedPassword = hash;
-  });
-};
+let hashedPassword = bcrypt.hash(myPlaintextPassword, saltRounds);
+
 console.log(hashedPassword);
 export default hashedPassword;
-
