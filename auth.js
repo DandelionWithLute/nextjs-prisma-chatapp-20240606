@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 // Your own logic for dealing with plaintext password strings; be careful!
-import bcrypt, { genSalt } from "bcrypt";
+import bcrypt from "bcrypt";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
