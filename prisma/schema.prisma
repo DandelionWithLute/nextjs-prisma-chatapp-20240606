@@ -35,19 +35,19 @@ model User {
   id             Int        @id @default(autoincrement())
   email          String     @unique
   name           String     @unique
-  hashedPassword String     
+  hashedPassword String
   profile        Profile?
   Room           Room[]
   RoomData       RoomData[]
 }
 
 model Room {
-  id        String     @id @default(uuid()) 
-  createdAt DateTime   @default(now())
-  name      String
-  userEmail String
-  user      User       @relation(fields: [userEmail], references: [email])
-  RoomData  RoomData[]
+  id         String     @id @default(uuid())
+  createdAt  DateTime   @default(now())
+  name       String
+  ownerEmail String
+  user       User       @relation(fields: [ownerEmail], references: [email])
+  RoomData   RoomData[]
 }
 
 model RoomData {

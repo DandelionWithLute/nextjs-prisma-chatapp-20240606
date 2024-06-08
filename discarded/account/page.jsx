@@ -1,11 +1,11 @@
-import React from "react";
-// import prisma from "@/utils/prisma";
+// import React from "react";
+// // import prisma from "@/utils/prisma";
 
-const page = async () => {
-  return <div>page</div>;
-};
+// const page = async () => {
+//   return <div>page</div>;
+// };
 
-export default page;
+// export default page;
 
 {
   /* Crappy Code Here

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
 const Page = () => {
   let [loaded, setLoaded] = useState();
@@ -15,16 +15,23 @@ const Page = () => {
     setLoaded(true);
   }
 
-  const session = useSession();
-  if (loaded) {
-    console.log(session);
-  }
+  // const session = useSession();
+  // console.log(session.data.user);
 
   return (
     <div className={styles.container}>
-      <Link href={"/account"}>account</Link>
-      <Link href={"/login"}>login</Link>
-      <Link href={"/register"}>register</Link>
+      <Link className={styles.link} href={"/account"}>
+        account
+      </Link>
+      <Link className={styles.link} href={"/login"}>
+        login
+      </Link>
+      <Link className={styles.link} href={"/register"}>
+        register
+      </Link>
+      <Link className={styles.link} href={"/dialogue"}>
+        dialogue
+      </Link>
       <div>
         {loaded ? (
           <div>useEffect Hook Successfully loaded the DOM!</div>
