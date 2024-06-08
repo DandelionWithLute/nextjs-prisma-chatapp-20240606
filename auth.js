@@ -16,7 +16,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
-        // let user = null
+        console.log(credentials);
+        let user;
 
         // logic to salt and hash password
         // const pwHash = saltAndHashPassword(credentials.password)
@@ -29,6 +30,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             email: credentials.email,
           },
         });
+        console.log(userToCheck);
         if (!userToCheck) {
           return new NextResponse(
             JSON.stringify("Account or Password wrong.", { status: 200 })
@@ -38,13 +40,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           credentials.password,
           userToCheck.hashedPassword
         );
+        console.log("IsPasswordCorrect Value:" + isPasswordCorrect);
 
         if (!isPasswordCorrect) {
           return new NextResponse(
             JSON.stringify("Account or Password wrong.", { status: 200 })
           );
         }
-
+        console.log(user);
+        user = userToCheck;
         // return user object with the their profile data
         return user;
       },
