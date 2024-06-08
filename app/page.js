@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { useSession } from "next-auth/react";
 
-const page = () => {
+const Page = () => {
   let [loaded, setLoaded] = useState();
   // console.log(loading);
   useEffect(() => {
@@ -36,4 +36,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
