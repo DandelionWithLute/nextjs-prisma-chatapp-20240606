@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import z from "zod";
 
-export const POST = async (req) => {
+export const POST = async (req, res) => {
   // get info from frontend
   let body = await req.json();
   // const { name, email, passwordToHash } = body; // Discarded
@@ -30,14 +30,19 @@ export const POST = async (req) => {
 
   // hash password
   let hashedPassword = await bcrypt.hash(parsedPassword, 10);
-
-  await prisma.user.create({
-    data: {
-      name: parsedName,
-      email: parsedEmail,
-      hashedPassword,
-    },
-  });
+  if (parsedEmail && parsedPassword && parsedName) {
+    await prisma.user.create({
+      data: {
+        name: parsedName,
+        email: parsedEmail,
+        hashedPassword,
+      },
+    });
+  }
+  if (!res.ok)
+    return new NextResponse(
+      JSON.stringify("There's an Error!", { status: 500 })
+    );
 
   return new NextResponse(JSON.stringify("POST Success!", { status: 200 }));
 };

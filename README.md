@@ -2,7 +2,8 @@ chatapp
 create uuid room and store it into the database\
 
 errors met:
-1.schema.prisma not updated
+1.schema.prisma not updated[done]
+2.ORM id unregularly increases
 
 to be done later:
 1.password.js userInputToGet in bcrypt

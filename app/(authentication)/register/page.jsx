@@ -23,11 +23,14 @@ const page = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <div>name</div>
-        <input className={styles.border}></input>
+        <input type="name" className={styles.border}></input>
+
         <div>email</div>
-        <input className={styles.border}></input>
+        <input type="email" className={styles.border}></input>
+
         <div>password</div>
-        <input className={styles.border}></input>
+        <input type="password" className={styles.border}></input>
+
         <div></div>
         <button type="submit">submit</button>
       </form>
