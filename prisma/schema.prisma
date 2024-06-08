@@ -32,31 +32,31 @@ model Profile {
 }
 
 model User {
-  id             Int        @id @default(autoincrement())
-  email          String     @unique
-  name           String     @unique
+  id             Int            @id @default(autoincrement())
+  email          String         @unique
+  name           String         @unique
   hashedPassword String
   profile        Profile?
-  Room           Room[]
-  RoomData       RoomData[]
+  Dialogue       Dialogue[]
+  DialogueData   DialogueData[]
 }
 
-model Room {
-  id         String     @id @default(uuid())
-  createdAt  DateTime   @default(now())
-  name       String
-  ownerEmail String
-  user       User       @relation(fields: [ownerEmail], references: [email])
-  RoomData   RoomData[]
+model Dialogue {
+  id           String         @id @default(uuid())
+  createdAt    DateTime       @default(now())
+  name         String
+  ownerEmail   String
+  user         User           @relation(fields: [ownerEmail], references: [email])
+  DialogueData DialogueData[]
 }
 
-model RoomData {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  text      String
-  image     String?
-  userEmail String
-  user      User     @relation(fields: [userEmail], references: [email])
-  roomId    String
-  Room      Room     @relation(fields: [roomId], references: [id])
+model DialogueData {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  text       String
+  image      String?
+  userEmail  String
+  user       User     @relation(fields: [userEmail], references: [email])
+  dialogueId String
+  Dialogue   Dialogue @relation(fields: [dialogueId], references: [id])
 }

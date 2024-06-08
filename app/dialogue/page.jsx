@@ -1,16 +1,21 @@
 "use client"
-import { useRouter } from "next/navigation";
 import React from "react";
-
-const page = () => {
-  const router = useRouter();
-  const toSubpage = router.push(
-    "/dialogue/mydialogue?id=myRoomId&name=myRoomName"
-  );
+// https://www.youtube.com/watch?v=zwQs4wXr9Bg
+const page = async () => {
+  let getRooms = await fetch("/api/dialogue", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+  let data = await getRooms.json();
+  console.log(data);
+// https://www.youtube.com/watch?v=zwQs4wXr9Bg
   return (
     <div>
-      page
-      <button onClick={toSubpage}>Click to push params</button>
+      <div></div>
+      <div>213</div>
     </div>
   );
 };
