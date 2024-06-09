@@ -1,28 +1,38 @@
 "use client";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
-import React, { use } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import React, { use, useState } from "react";
 import styles from "./page.module.css";
+import { useSession } from "next-auth/react";
+
 
 const getData = async () => {
-  let res = await fetch("/api/dialogue/custom");
-  return await res.json();
+  const params = useParams();
+  let res = await fetch(`/api/dialogue/${params.id}`);
+  return res.json();
 };
 const gotData = getData();
 
 const Page = () => {
   const params = useParams();
+  console.log(params);
   const searchParams = useSearchParams();
+  console.log(searchParams);
 
   const handleTextSubmit = (e) => {
     e.preventDefault();
-    fetch(`/api/dialogue/custom`, {
+    fetch(`/api/dialogue/${params.id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: e.target[0].value, dialogueId: params.id }),
     });
   };
 
+  const session = useSession();
+  console.log(session);
+
   // GET
+  // const [paramsId,setParamsId] = useState()
+
   const data = use(gotData);
   console.log(data);
 

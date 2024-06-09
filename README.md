@@ -14,7 +14,22 @@ https://authjs.dev/getting-started/authentication/credentials
 4.Register page and Login page
 5.Api Routes Should Protect Itself From Unauthenticated requests.
 6.To Build Private Chat App I Must Make Rooms Hidden From Others.
-7.Private session check(not done for private) dialogue/[...id]/route.js
-8.No cache could be used in fetch to prevent infinite looping.[wrong reason]
-return new NextResponse(JSON.stringify(getUserFromSession[0], { status: 200 }));
-True Reason:NextResponse can't have [] which will result in the infinite loop.
+
+
+
+Next Request
+urlList: [ URL {} ],
+    url: URL {
+      href: 'http://localhost:3000/api/dialogue/71d50db5-0e9b-4e3c-ba2b-41356154ce54?id=myRoomId&name=myRoomName',       
+      origin: 'http://localhost:3000',
+      protocol: 'http:',
+      username: '',
+      password: '',
+      host: 'localhost:3000',
+      hostname: 'localhost',
+      port: '3000',
+      pathname: '/api/dialogue/71d50db5-0e9b-4e3c-ba2b-41356154ce54',
+      search: '?id=myRoomId&name=myRoomName',
+      searchParams: URLSearchParams { 'id' => 'myRoomId', 'name' => 'myRoomName' },
+      hash: ''
+    }
