@@ -14,7 +14,11 @@ https://authjs.dev/getting-started/authentication/credentials
 4.Register page and Login page
 5.Api Routes Should Protect Itself From Unauthenticated requests.
 6.To Build Private Chat App I Must Make Rooms Hidden From Others.
-
+7.I'll just give client all data and let it do it's own filter works.
+Nextjs will cache the data for me anyway!
+8.User-API-Database fetch Data logic, only fetch data of my own and groups I joined.
+Sequence=>use email to find Dialogues I own => use email to find Dialogues I'm in
+9.Add Dialogue Members Model
 
 
 Next Request

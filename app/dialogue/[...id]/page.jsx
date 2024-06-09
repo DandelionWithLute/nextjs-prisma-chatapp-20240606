@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 
 const getData = async () => {
   let res = await fetch("/api/dialogue/custom");
-  return await res.json();
+  return res.json();
 };
 const gotData = getData();
 

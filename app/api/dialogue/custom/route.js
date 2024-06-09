@@ -44,19 +44,19 @@ export const GET = async (req) => {
   // let dialogueId = middleArray[middleArray.length - 1];
   // console.log(dialogueId);
 
-  const getAllDialogueText = await prisma.dialogueData.findMany({
-    where: {
-      dialogueId,
-    },
-  });
-  console.log(getAllDialogueText);
+  const session = await auth();
+  console.log(session.user.email);
 
-  // const dialogueData = await prisma.dialogueData.findMany({
-  //   where: {
-  //     dialogueId: searchParams.id,
-  //   },
-  // });
-  return new NextResponse(JSON.stringify(getAllDialogueText[0], { status: 200 }));
+  const getAllDialogues = await prisma.dialogue.findMany({
+    where: { ownerEmail: session.user.email },
+  });
+
+  const getAllDialogueTexts = await prisma.dialogueData.findMany({
+    where: { userEmail: session.user.email },
+  });
+  return new NextResponse(
+    JSON.stringify([getAllDialogues, getAllDialogueTexts], { status: 200 })
+  );
 };
 
 /* 
