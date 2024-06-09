@@ -19,6 +19,9 @@ Nextjs will cache the data for me anyway!
 8.User-API-Database fetch Data logic, only fetch data of my own and groups I joined.
 Sequence=>use email to find Dialogues I own => use email to find Dialogues I'm in
 9.Add Dialogue Members Model
+10.Building Headers
+https://www.freepik.com/search?format=search&query=talking%20
+
 
 
 Next Request
