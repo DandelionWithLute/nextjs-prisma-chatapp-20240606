@@ -5,18 +5,250 @@ import Image from "next/image";
 
 const page = () => {
   return (
-    <div className="box-border h-screen w-100% gap-8 flex-wrap">
+    <div className="flex h-screen w-100% gap-8 flex-wrap ml-8 mt-0 ">
       {/* Single Card Container */}
-      <div className="flex flex-col  w-[250px] min-h-[425px]">
-        <div className="flex w-full h-[325px] min-h-[325px] relative rounded-xl overflow-hidden">
+      <div className="flex flex-col w-[250px] max-h-[425px] ">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
           <Image src="/1.jpg" alt="" layout="fill" objectFit="cover" />
         </div>
-        
+
         <div className="flex flex-col items-center justify-center p-3">
           {/* Should be less than 30 letters (2 lines) */}
           <div className="w-full max-h-12 overflow-hidden">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
             tristique velit sed tristique varius.
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      <div className="flex flex-col  w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/2.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            tristique velit sed tristique varius.
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      {/* Single Card Container */}
+      <div className="flex flex-col w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/1.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            tristique velit sed tristique varius.
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      <div className="flex flex-col  w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/2.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet,
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      {/* Single Card Container */}
+      <div className="flex flex-col w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/1.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            tristique velit sed tristique varius.
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      <div className="flex flex-col  w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/2.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            tristique velit sed tristique varius.
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      {/* Single Card Container */}
+      <div className="flex flex-col w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/1.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            tristique velit sed tristique varius.
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      <div className="flex flex-col  w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/2.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            tristique velit sed tristique varius.
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      {/* Single Card Container */}
+      <div className="flex flex-col w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/1.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            tristique velit sed tristique varius.
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      <div className="flex flex-col  w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/2.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            tristique velit sed tristique varius.
+          </div>
+          <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
+            <div className="relative h-5 w-5 ">
+              <Image className="rounded-full" src="/avatar.jpg" alt="" fill />
+            </div>
+            <div className="flex justify-between w-full">
+              <div>Username</div>
+              <div>❤️6592</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Single Card Container */}
+      <div className="flex flex-col  w-[250px] max-h-[425px]">
+        <div className="flex w-full h-[325px] relative rounded-xl overflow-hidden">
+          <Image src="/3.jpg" alt="" layout="fill" objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center p-3">
+          {/* Should be less than 30 letters (2 lines) */}
+          <div className="w-full max-h-12 overflow-hidden">
+            Lorem ipsum dolor sit amet
           </div>
           <div className="flex w-full h-5 max-h-5 gap-1 mt-1">
             <div className="relative h-5 w-5 ">
@@ -35,6 +267,8 @@ const page = () => {
 
 export default page;
 /* 
+    gap-8
+
     250px/4=62.5tailwind
 
     container
