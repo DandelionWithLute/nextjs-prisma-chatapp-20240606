@@ -32,6 +32,9 @@ const Page = () => {
       <Link className={styles.link} href={"/dialogue"}>
         dialogue
       </Link>
+      <Link className={styles.link} href={"/explore"}>
+        explore
+      </Link>
       <div>
         {loaded ? (
           <div>useEffect Hook Successfully loaded the DOM!</div>

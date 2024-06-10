@@ -16,3 +16,9 @@ https://react.dev/reference/react/use
 https://stackoverflow.com/questions/50029580/why-is-my-fetch-request-being-called-twice
 5.const { searchParams } = new URL(req.url)(One hour wasted)
 6.There's no need for dynimic api as dynamic routes need an exact position to fetch.(Two hour wasted)
+7.Difference between "margin-left", and "left" (or "margin-right", and "right")
+https://stackoverflow.com/questions/3859801/difference-between-margin-left-and-left-or-margin-right-and-right
+Gemini:
+Margin-top is like adding spacers on top of the book to create distance from other books. The book itself stays put, but the overall height on the shelf increases.
+Top is like physically picking up the book and placing it higher on the shelf. The book itself moves, but the space it originally occupied remains the same size.
+Top only works for elements with a positioning value set (usually relative, absolute, or fixed).
