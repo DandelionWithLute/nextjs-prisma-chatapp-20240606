@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 const page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`/api/explore`, {
+    const response = await fetch(`/api/explore/post`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

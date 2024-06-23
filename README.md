@@ -22,8 +22,10 @@ Sequence=>use email to find Dialogues I own => use email to find Dialogues I'm i
 10.Building Headers
 https://www.freepik.com/search?format=search&query=talking%20
 11./explore/post & /api/explore & /explore
-
-
+12.You should only get a few posts on /explore but not getting all from database.
+on /explore & /api/explore
+13.Having considered the username should link to the user's main page,
+I'm going to get multiple queries.
 
 Next Request
 urlList: [ URL {} ],
