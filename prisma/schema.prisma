@@ -39,6 +39,7 @@ model User {
   profile        Profile?
   Dialogue       Dialogue[]
   DialogueData   DialogueData[]
+  publicSocial   publicSocial[]
 }
 
 model Dialogue {
@@ -59,4 +60,15 @@ model DialogueData {
   user       User     @relation(fields: [userEmail], references: [email])
   dialogueId String
   Dialogue   Dialogue @relation(fields: [dialogueId], references: [id])
+}
+
+model publicSocial {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  title     String   @default("Security:Title Not Written Yet!")
+  img       String   @default("/1.jpg")
+  desc      String   @default("Security:Description Not Written Yet!")
+  likes     Int      @default(0)
+  userEmail String
+  user      User     @relation(fields: [userEmail], references: [email])
 }

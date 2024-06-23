@@ -21,6 +21,7 @@ Sequence=>use email to find Dialogues I own => use email to find Dialogues I'm i
 9.Add Dialogue Members Model
 10.Building Headers
 https://www.freepik.com/search?format=search&query=talking%20
+11./explore/post & /api/explore & /explore
 
 
 

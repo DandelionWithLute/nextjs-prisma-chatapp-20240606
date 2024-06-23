@@ -108,7 +108,9 @@ const Headers = () => {
       <div className="flex">
         <div className="ml-24"></div>
         <div className="flex w-25">
-          <Image src="/talking.jpg" alt="talkings" width={100} height={30} />
+          <a href="http://localhost:3000/">
+            <Image src="/talking.jpg" alt="talkings" width={100} height={30} />
+          </a>
         </div>
         {/* Headers... */}
         <div className=" h-full w-24"></div>
@@ -185,6 +187,7 @@ const Headers = () => {
       <>
         {/* mr-14 makes a square as the height is also tailwind 14 */}
         <div className="flex items-center gap-3  mr-14">
+          <a href="http://localhost:3000/explore/post">➕</a>
           <div>
             <HoverCard>
               <HoverCardTrigger>
