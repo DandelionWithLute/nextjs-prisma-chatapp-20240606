@@ -1,16 +1,14 @@
-// There might be a client-server error here I guess (probably not)
-import { signIn, signOut } from "@/auth.ts";
-
-export function SignIn() {
+import { signOut } from "@/auth"
+ 
+export function SignOut() {
   return (
     <form
       action={async () => {
-        "use server";
-        await signOut();
-        //  await signIn("github", { redirectTo: "/dashboard" })
+        "use server"
+        await signOut()
       }}
     >
-      <button type="submit">Sign in</button>
+      <button type="submit">Sign Out</button>
     </form>
-  );
+  )
 }

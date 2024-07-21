@@ -1,5 +1,5 @@
 // There might be a client-server error here I guess (probably not)
-import { signIn } from "@/auth.ts"
+import { signIn } from "@/auth"
  
 export function SignIn() {
   return (
