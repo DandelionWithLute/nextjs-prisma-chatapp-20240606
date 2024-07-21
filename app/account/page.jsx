@@ -8,23 +8,27 @@ const page = async () => {
   //   console.log(user);
   const user = userToFetch ?? "";
 
-
   return (
     <div>
       {user ? (
-        <>
+        <div className="flex items-center justify-center h-[90vh] w-full flex-col">
           {" "}
-          <div>
-            <div>Your name is {user.name}</div>
-            <div>Your email is {user.email}</div>
-            <SignOut />
+          <div className="flex flex-col gap-4">
+            <div className="text-2xl">User Info</div>
+            <div className="text-2xl">Your name is {user.name}</div>
+            <div className="text-2xl">Your email is {user.email}</div>
+            <div className="text-2xl">
+              <SignOut />
+            </div>
           </div>
-        </>
+        </div>
       ) : (
-        <>
+        <div>
           <div>You are currently not logged.</div>
-          <Link href="http://localhost:3000/login" >Click here to the login page.</Link>
-        </>
+          <Link href="http://localhost:3000/login">
+            Click here to the login page.
+          </Link>
+        </div>
       )}
     </div>
   );

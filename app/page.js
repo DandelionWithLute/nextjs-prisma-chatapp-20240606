@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
-// import { useSession } from "next-auth/react";
+import SignOutwithClient from "./(authentication)/signout/page";
+import { useSession } from "next-auth/react";
 
 const Page = () => {
   let [loaded, setLoaded] = useState();
@@ -15,7 +16,7 @@ const Page = () => {
     setLoaded(true);
   }
 
-  // const session = useSession();
+  const session = useSession();
   // console.log(session.data.user);
 
   return (
@@ -42,6 +43,7 @@ const Page = () => {
           <div>Still loading...</div>
         )}
       </div>
+      <div>{session.status == "authenticated" ? SignOutwithClient() : ""}</div>
     </div>
   );
 };

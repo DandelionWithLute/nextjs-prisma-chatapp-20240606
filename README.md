@@ -27,6 +27,8 @@ on /explore & /api/explore
 13.Having considered the username should link to the user's main page,
 I'm going to get multiple queries.
 14.Account Info Page July 21 2024
+https://authjs.dev/guides/pages/signin
+
 
 Next Request
 urlList: [ URL {} ],
