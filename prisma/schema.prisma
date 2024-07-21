@@ -32,24 +32,34 @@ model Profile {
 }
 
 model User {
-  id             Int            @id @default(autoincrement())
-  email          String         @unique
-  name           String         @unique
+  id             Int              @id @default(autoincrement())
+  email          String           @unique
+  name           String           @unique
   hashedPassword String
-  avatar         String         @default("/avatar.jpg")
+  avatar         String           @default("/avatar.jpg")
   profile        Profile?
   Dialogue       Dialogue[]
   DialogueData   DialogueData[]
   publicSocial   publicSocial[]
+  DialogueMember DialogueMember[]
 }
 
 model Dialogue {
-  id           String         @id @default(uuid())
-  createdAt    DateTime       @default(now())
-  name         String
-  ownerEmail   String
-  user         User           @relation(fields: [ownerEmail], references: [email])
-  DialogueData DialogueData[]
+  id             String           @id @default(uuid())
+  createdAt      DateTime         @default(now())
+  name           String
+  ownerEmail     String
+  user           User             @relation(fields: [ownerEmail], references: [email])
+  DialogueData   DialogueData[]
+  DialogueMember DialogueMember[]
+}
+
+model DialogueMember {
+  id         String   @id @default(cuid())
+  userEmail  String
+  user       User     @relation(fields: [userEmail], references: [email])
+  dialogueId String
+  Dialogue   Dialogue @relation(fields: [dialogueId], references: [id])
 }
 
 model DialogueData {

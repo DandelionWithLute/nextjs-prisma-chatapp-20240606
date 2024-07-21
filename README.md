@@ -28,6 +28,8 @@ on /explore & /api/explore
 I'm going to get multiple queries.
 14.Account Info Page July 21 2024
 https://authjs.dev/guides/pages/signin
+15.Change User Avatar one day
+File and FileReader https://javascript.info/file
 
 
 Next Request
