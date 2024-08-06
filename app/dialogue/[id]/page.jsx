@@ -13,41 +13,58 @@ const page = ({ params }) => {
   const { status } = useSession();
   const session = useSession().data; //data: session
 
-  const { data, error } = useSWR("http://localhost:3000/api/dialogue", fetcher);
+  const { data, error, mutate } = useSWR(
+    "http://localhost:3000/api/dialogue",
+    fetcher
+  );
 
   const [inputValue, setInputValue] = useState("");
+  const [newlySentInputValue, setNewlySentInputValue] = useState("");
 
-  useEffect(() => {
-    console.log(inputValue);
-  }, [inputValue]);
+  // useEffect(() => {
+  //   console.log(inputValue);
+  // }, [inputValue]);
 
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
-  console.log("Data is here:", data);
+  // console.log("Data is here:", data);
 
-  // Basically I just need to infinitely re-fetch things from the db, thus swr with post is in no need.
-
-  if (status === "authenticated") {
-    const fetcher2 = fetch("http://localhost:3000/api/dialogue", {
+  const handleTextSubmit = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:3000/api/dialogue", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: { name: session.user.name, email: session.user.email },
+      body: JSON.stringify({
+        name: session.user.name,
+        email: session.user.email,
+        text: inputValue,
+        dialogueId: params.id,
+      }),
     });
+    setNewlySentInputValue(inputValue);
+    e.target.value = "";
+    mutate();
+  };
 
-    console.log(session);
+  // Basically I just need to infinitely re-fetch things from the db, thus swr with post is in no need.
 
-    const handleTextSubmit = (e) => {};
+  if (status === "authenticated") {
+    // console.log(session);
 
     return (
       <div className="flex h-[95vh] w-full">
         {/* Left Side: Titles */}
         <div className="w-[300px]">
           <ScrollArea className="h-full w-full rounded-md border">
-            {data.map((d) => (
-              <div className="flex text-2xl p-2 gap-1">{d.title}</div>
-            ))}
+            {data
+              .sort((a, b) => b - a)
+              .map((d) => (
+                <div className="flex text-2xl p-2 gap-1" key={d.id}>
+                  {d.title}
+                </div>
+              ))}
           </ScrollArea>
         </div>
         <Separator orientation="vertical" />
@@ -57,22 +74,19 @@ const page = ({ params }) => {
           <div>
             {/* {params.id} {inputValue}{" "} */}
             {data.map((d) => (
-              <>
+              <div key={d.id}>
                 {d.id == params.id &&
                   d.DialogueData.sort((a, b) => a - b).map((Dt) => (
-                    <div>{Dt.text}</div>
+                    <div key={Dt.id}>{Dt.text}</div>
                   ))}
-              </>
+              </div>
             ))}
+            {newlySentInputValue}
           </div>
           {/* Send Messages Here */}
-          <form
-            className="flex w-full bottom-0"
-            onSubmit={(e) => handleTextSubmit(e)}
-          >
+          <form className="flex w-full bottom-0" onSubmit={handleTextSubmit}>
             <Input
-              type="email"
-              placeholder="Email"
+              placeholder="Starts here..."
               className="w-full"
               // onchange was only on client side and this is NOT the server side
               onChange={(e) => setInputValue(e.target.value)}
