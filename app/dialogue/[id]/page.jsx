@@ -5,28 +5,29 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const page = ({ params }) => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
+  const session = useSession().data; //data: session
 
-  // if (status === "authenticated") {
-  //   return <p>Signed in as {session.user.email}</p>;
-  // }
-  // return <a>Sign in</a>;
+  const { data, error } = useSWR("http://localhost:3000/api/dialogue", fetcher);
+
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     console.log(inputValue);
   }, [inputValue]);
 
-  if (status === "authenticated") {
-    const fetcher1 = fetch("http://localhost:3000/api/dialogue", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+  console.log("Data is here:", data);
 
+  // Basically I just need to infinitely re-fetch things from the db, thus swr with post is in no need.
+
+  if (status === "authenticated") {
     const fetcher2 = fetch("http://localhost:3000/api/dialogue", {
       method: "POST",
       headers: {
@@ -41,10 +42,12 @@ const page = ({ params }) => {
 
     return (
       <div className="flex h-[95vh] w-full">
-        {/* Left Side: Cards */}
+        {/* Left Side: Titles */}
         <div className="w-[300px]">
           <ScrollArea className="h-full w-full rounded-md border">
-            <div className="flex text-2xl p-2 gap-1">2135432</div>
+            {data.map((d) => (
+              <div className="flex text-2xl p-2 gap-1">{d.title}</div>
+            ))}
           </ScrollArea>
         </div>
         <Separator orientation="vertical" />
@@ -52,7 +55,15 @@ const page = ({ params }) => {
         <div className="w-[calc(100% - 300px)] w-full h-full flex flex-col justify-between">
           {/* Dialogue Container */}
           <div>
-            {params.id} {inputValue}
+            {/* {params.id} {inputValue}{" "} */}
+            {data.map((d) => (
+              <>
+                {d.id == params.id &&
+                  d.DialogueData.sort((a, b) => a - b).map((Dt) => (
+                    <div>{Dt.text}</div>
+                  ))}
+              </>
+            ))}
           </div>
           {/* Send Messages Here */}
           <form

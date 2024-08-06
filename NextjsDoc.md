@@ -19,8 +19,9 @@ https://stackoverflow.com/questions/50029580/why-is-my-fetch-request-being-calle
 7.Difference between "margin-left", and "left" (or "margin-right", and "right")
 https://stackoverflow.com/questions/3859801/difference-between-margin-left-and-left-or-margin-right-and-right
 Gemini:
-Margin-top is like adding spacers on top of the book to create distance from other books. The book itself stays put, but the overall height on the shelf increases.
-Top is like physically picking up the book and placing it higher on the shelf. The book itself moves, but the space it originally occupied remains the same size.
-Top only works for elements with a positioning value set (usually relative, absolute, or fixed).
-onClick={await handleStartANewDialogue()} under pay attention to "await" under server mode (function expected but got object error)
-onchange was only on client side and this is the client side  onChange={async (e) => {console.log(await e.target.value);myInputValue = await e.target.value;}}
+8.Margin-top is like adding spacers on top of the book to create distance from other books. The book itself stays put, but the overall height on the shelf increases.
+9.Top is like physically picking up the book and placing it higher on the shelf. The book itself moves, but the space it originally occupied remains the same size.
+10.Top only works for elements with a positioning value set (usually relative, absolute, or fixed).
+11.onClick={await handleStartANewDialogue()} under pay attention to "await" under server mode (function expected but got object error)
+12.onchange was only on client side and this is the client side  onChange={async (e) => {console.log(await e.target.value);myInputValue = await e.target.value;}}
+13.Sort stability Since version 10 (or ECMAScript 2019), the specification dictates that Array.prototype.sort is stable. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#sort_stability
