@@ -22,3 +22,5 @@ Gemini:
 Margin-top is like adding spacers on top of the book to create distance from other books. The book itself stays put, but the overall height on the shelf increases.
 Top is like physically picking up the book and placing it higher on the shelf. The book itself moves, but the space it originally occupied remains the same size.
 Top only works for elements with a positioning value set (usually relative, absolute, or fixed).
+onClick={await handleStartANewDialogue()} under pay attention to "await" under server mode (function expected but got object error)
+onchange was only on client side and this is the client side  onChange={async (e) => {console.log(await e.target.value);myInputValue = await e.target.value;}}

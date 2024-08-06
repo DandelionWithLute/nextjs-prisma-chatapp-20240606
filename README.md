@@ -30,7 +30,7 @@ I'm going to get multiple queries.
 https://authjs.dev/guides/pages/signin
 15.Change User Avatar one day
 File and FileReader https://javascript.info/file
-
+16./dialogue/[id]/page.jsx may add swr mutate below & may need to protect routes
 
 Next Request
 urlList: [ URL {} ],

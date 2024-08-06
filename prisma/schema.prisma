@@ -49,7 +49,8 @@ model Dialogue {
   createdAt      DateTime         @default(now())
   name           String
   ownerEmail     String
-  user           User             @relation(fields: [ownerEmail], references: [email])
+  title          String?
+  user           User             @relation(fields: [ownerEmail], references: [email], onDelete: Cascade, onUpdate: Cascade)
   DialogueData   DialogueData[]
   DialogueMember DialogueMember[]
 }
@@ -57,9 +58,9 @@ model Dialogue {
 model DialogueMember {
   id         String   @id @default(cuid())
   userEmail  String
-  user       User     @relation(fields: [userEmail], references: [email])
+  user       User     @relation(fields: [userEmail], references: [email], onDelete: Cascade, onUpdate: Cascade)
   dialogueId String
-  Dialogue   Dialogue @relation(fields: [dialogueId], references: [id])
+  Dialogue   Dialogue @relation(fields: [dialogueId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model DialogueData {
@@ -68,9 +69,9 @@ model DialogueData {
   text       String
   image      String?
   userEmail  String
-  user       User     @relation(fields: [userEmail], references: [email])
+  user       User     @relation(fields: [userEmail], references: [email], onDelete: Cascade, onUpdate: Cascade)
   dialogueId String
-  Dialogue   Dialogue @relation(fields: [dialogueId], references: [id])
+  Dialogue   Dialogue @relation(fields: [dialogueId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model publicSocial {
