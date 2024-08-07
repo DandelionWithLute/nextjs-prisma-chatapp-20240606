@@ -34,6 +34,14 @@ File and FileReader https://javascript.info/file
 17.If I need multiple members chatting under gpt, I always need to get from the api.
 18.New Chat Page Design: When the params.id was equal to new under subpage
 client side:post to api normally / api side:if it was new, create a new dialogue and then new dialoguedata instead of posting dialoguedata into the normal uuid.
+19.How to solve the /dialogue/new post fetch problem of losing callbacks?
+A. Add extra identification data for tracking in the database.
+B. Get Specific data from the database.
+C. Get title as information then get the latest one of the same titles.
+Tips:In google gemini there's a refresh on the browser side.
+My Answer:got to subpage, server fetch, redirect
+Or you may refresh? And get the latest one? How to do that? (Could be the simplest one.)
+
 
 Next Request
 urlList: [ URL {} ],

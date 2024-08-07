@@ -45,6 +45,13 @@ const page = ({ params }) => {
 
   const handleTextSubmit = (e) => {
     e.preventDefault();
+
+    // new dialogue created and text sent
+    {
+      /* */
+    }
+
+    // normal already known dialogueId
     fetch("http://localhost:3000/api/dialogue", {
       method: "POST",
       headers: {
@@ -59,6 +66,15 @@ const page = ({ params }) => {
     });
     setNewlySentInputValue(inputValue);
     setInputValue("");
+
+    // Failed
+    // if (result.new == true) {
+    //   router.push(`/dialogue/${result.id}`);
+    // }
+
+    if (params.id == "new") {
+      router.push(`/dialogue/new/q`);
+    }
   };
 
   // Basically I just need to infinitely re-fetch things from the db, thus swr with post is in no need.
@@ -71,35 +87,43 @@ const page = ({ params }) => {
         {/* Left Side: Titles */}
 
         <div className="w-[300px]">
-          <div className="flex items-center min-h-12 p-2">
+          <div className="flex items-center justify-center min-h-12 p-2">
             <HoverCard>
               <HoverCardTrigger>
                 {/* More development: If it was a new page, we'll guide the user to a new chat page. */}
                 {/* Like if the params.id was equal to new */}
-                <FontAwesomeIcon
-                  icon={faFeather}
-                  className="text-2xl cursor-pointer"
+                <div
+                  className="cursor-pointer"
                   onClick={() => {
                     router.push("/dialogue/new");
                   }}
-                />
+                >
+                  Create a new Dialogue
+                  <FontAwesomeIcon
+                    icon={faFeather}
+                    className="text-2xl cursor-pointer"
+                  />
+                </div>
               </HoverCardTrigger>
               <HoverCardContent className="text-sm">
                 Start a new chat here.
               </HoverCardContent>
             </HoverCard>
           </div>
-          {data
-            .sort((a, b) => b - a)
-            .map((d) => (
-              <div
-                className="flex text-2xl p-2 gap-1 cursor-pointer"
-                key={d.id}
-                onClick={() => router.push(`/dialogue/${d.id}`)}
-              >
-                {d.title}
-              </div>
-            ))}
+
+          <ScrollArea className="h-full w-full ">
+            {data
+              .sort((a, b) => b - a)
+              .map((d) => (
+                <div
+                  className="flex text-2xl p-2 gap-1 cursor-pointer"
+                  key={d.id}
+                  onClick={() => router.push(`/dialogue/${d.id}`)}
+                >
+                  {d.title}
+                </div>
+              ))}
+          </ScrollArea>
         </div>
         <Separator orientation="vertical" />
         {/* Right Side: Dialogues */}

@@ -6,6 +6,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFeather } from "@fortawesome/free-solid-svg-icons";
 
 const page = () => {
   const { status } = useSession();
@@ -46,7 +53,31 @@ const page = () => {
       <div className="flex h-[95vh] w-full">
         {/* Left Side: Titles */}
         <div className="w-[300px]">
-          <ScrollArea className="h-full w-full rounded-md border">
+          <div className="flex items-center justify-center min-h-12 p-2">
+            <HoverCard>
+              <HoverCardTrigger>
+                {/* More development: If it was a new page, we'll guide the user to a new chat page. */}
+                {/* Like if the params.id was equal to new */}
+                <div
+                  className="cursor-pointer"
+                  onClick={() => {
+                    router.push("/dialogue/new");
+                  }}
+                >
+                  Create a new Dialogue
+                  <FontAwesomeIcon
+                    icon={faFeather}
+                    className="text-2xl cursor-pointer"
+                  />
+                </div>
+              </HoverCardTrigger>
+              <HoverCardContent className="text-sm">
+                Start a new chat here.
+              </HoverCardContent>
+            </HoverCard>
+          </div>
+
+          <ScrollArea className="h-full w-full ">
             {data
               .sort((a, b) => b - a)
               .map((d) => (
