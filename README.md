@@ -32,6 +32,8 @@ https://authjs.dev/guides/pages/signin
 File and FileReader https://javascript.info/file
 16./dialogue/[id]/page.jsx may add swr mutate below & may need to protect routes
 17.If I need multiple members chatting under gpt, I always need to get from the api.
+18.New Chat Page Design: When the params.id was equal to new under subpage
+client side:post to api normally / api side:if it was new, create a new dialogue and then new dialoguedata instead of posting dialoguedata into the normal uuid.
 
 Next Request
 urlList: [ URL {} ],
