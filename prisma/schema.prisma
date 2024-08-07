@@ -68,6 +68,8 @@ model DialogueData {
   createdAt  DateTime @default(now())
   text       String
   image      String?
+  role       String   @default("user")
+  // or gpt
   userEmail  String
   user       User     @relation(fields: [userEmail], references: [email], onDelete: Cascade, onUpdate: Cascade)
   dialogueId String

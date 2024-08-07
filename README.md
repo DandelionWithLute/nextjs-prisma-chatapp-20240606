@@ -31,6 +31,7 @@ https://authjs.dev/guides/pages/signin
 15.Change User Avatar one day
 File and FileReader https://javascript.info/file
 16./dialogue/[id]/page.jsx may add swr mutate below & may need to protect routes
+17.If I need multiple members chatting under gpt, I always need to get from the api.
 
 Next Request
 urlList: [ URL {} ],

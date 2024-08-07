@@ -5,22 +5,18 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const page = ({ params }) => {
   const { status } = useSession();
   const session = useSession().data; //data: session
 
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/dialogue")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
+  const { data, error, mutate } = useSWR(
+    "http://localhost:3000/api/dialogue",
+    fetcher
+  );
 
   const [inputValue, setInputValue] = useState("");
   const [newlySentInputValue, setNewlySentInputValue] = useState("");
@@ -29,8 +25,8 @@ const page = ({ params }) => {
   //   console.log(inputValue);
   // }, [inputValue]);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No profile data</p>;
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
   // console.log("Data is here:", data);
 
   const handleTextSubmit = (e) => {
@@ -47,8 +43,9 @@ const page = ({ params }) => {
         dialogueId: params.id,
       }),
     });
-    setNewlySentInputValue(inputValue);
+    setNewlySentInputValue(inputValue)
     e.target.value = "";
+    mutate("/api/dialogue");
   };
 
   // Basically I just need to infinitely re-fetch things from the db, thus swr with post is in no need.
