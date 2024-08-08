@@ -12,7 +12,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFeather } from "@fortawesome/free-solid-svg-icons";
+import { faFeather, faRobot } from "@fortawesome/free-solid-svg-icons";
 
 const page = () => {
   const { status } = useSession();
@@ -53,18 +53,19 @@ const page = () => {
       <div className="flex h-[95vh] w-full">
         {/* Left Side: Titles */}
         <div className="w-[300px]">
-          <div className="flex items-center justify-center min-h-12 p-2">
+          {/* Adjust min-h here!~ */}
+          <div className="flex flex-col gap-3 items-center justify-center min-h-[100px] p-2 mt-4">
             <HoverCard>
               <HoverCardTrigger>
                 {/* More development: If it was a new page, we'll guide the user to a new chat page. */}
                 {/* Like if the params.id was equal to new */}
                 <div
-                  className="cursor-pointer"
+                  className="cursor-pointer hover:text-2xl"
                   onClick={() => {
                     router.push("/dialogue/new");
                   }}
                 >
-                  Create a new Dialogue
+                  New Dialogue
                   <FontAwesomeIcon
                     icon={faFeather}
                     className="text-2xl cursor-pointer"
@@ -75,18 +76,39 @@ const page = () => {
                 Start a new chat here.
               </HoverCardContent>
             </HoverCard>
+            <HoverCard>
+              <HoverCardTrigger>
+                {/* More development: If it was a new page, we'll guide the user to a new chat page. */}
+                {/* Like if the params.id was equal to new */}
+                <div className="cursor-pointer hover:text-2xl">
+                  AI Configuration
+                  <FontAwesomeIcon
+                    icon={faRobot}
+                    className="text-2xl cursor-pointer"
+                  />
+                </div>
+              </HoverCardTrigger>
+              <HoverCardContent className="text-sm">
+                Config AI options here.
+              </HoverCardContent>
+            </HoverCard>
           </div>
 
-          <ScrollArea className="h-full w-full ">
+          <ScrollArea className="h-full w-full">
+            <div className="text-2xl pl-4 pr-4 pt-1 pb-1 ">Recent</div>
             {data
               .sort((a, b) => b - a)
               .map((d) => (
                 <div
-                  className="flex text-2xl p-2 gap-1 cursor-pointer"
+                  className="flex pl-2 pr-2 pt-1 pb-1 cursor-pointer"
                   key={d.id}
                   onClick={() => router.push(`/dialogue/${d.id}`)}
                 >
-                  {d.title}
+                  <div className="flex items-center w-full hover:bg-slate-100 rounded-md h-10">
+                    <div className="ml-3 text-muted-foreground text-lg">
+                      {d.title}
+                    </div>
+                  </div>
                 </div>
               ))}
           </ScrollArea>

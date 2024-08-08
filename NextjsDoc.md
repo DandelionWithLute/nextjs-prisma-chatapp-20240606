@@ -25,3 +25,7 @@ Gemini:
 11.onClick={await handleStartANewDialogue()} under pay attention to "await" under server mode (function expected but got object error)
 12.onchange was only on client side and this is the client side  onChange={async (e) => {console.log(await e.target.value);myInputValue = await e.target.value;}}
 13.Sort stability Since version 10 (or ECMAScript 2019), the specification dictates that Array.prototype.sort is stable. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#sort_stability
+14.Understanding Dataset: Using data attributes 
+https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+data-columns="3"   article.dataset.columns; // "3"
+(data hyphen => dataset dot)

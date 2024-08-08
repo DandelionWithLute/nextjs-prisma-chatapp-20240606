@@ -41,6 +41,14 @@ C. Get title as information then get the latest one of the same titles.
 Tips:In google gemini there's a refresh on the browser side.
 My Answer:got to subpage, server fetch, redirect
 Or you may refresh? And get the latest one? How to do that? (Could be the simplest one.)
+20.Start a new folder under app or not?
+Not: add an extra msg in fetch
+Server side rendering is a must through api and with client you need swr.
+An extra dialogue mode doesn't need to be stored into database, it only needs to go to api.
+AI mode: checkbox => Dialogue (no, just reverse this order with checkbox) => combobox(discarded) => Toast
+21.Add resizable to the main page.
+
+
 
 
 Next Request

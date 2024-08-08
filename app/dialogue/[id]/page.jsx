@@ -12,7 +12,17 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFeather } from "@fortawesome/free-solid-svg-icons";
+import { faFeather, faRobot } from "@fortawesome/free-solid-svg-icons";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
+import PageServerFetch from "./pageServerFetch";
 
 const page = ({ params }) => {
   const { status } = useSession();
@@ -35,9 +45,8 @@ const page = ({ params }) => {
   const [inputValue, setInputValue] = useState("");
   const [newlySentInputValue, setNewlySentInputValue] = useState("");
 
-  // useEffect(() => {
-  //   console.log(inputValue);
-  // }, [inputValue]);
+  // AI Configuration Section
+  let [AIConfigMode, setAIConfigMode] = useState(true);
 
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No profile data</p>;
@@ -81,24 +90,26 @@ const page = ({ params }) => {
 
   if (status === "authenticated") {
     // console.log(session);
+    let checkedValue = false;
 
     return (
       <div className="flex h-[95vh] w-full">
         {/* Left Side: Titles */}
-
+        {/* The Default Html Text Size is 16px. */}
         <div className="w-[300px]">
-          <div className="flex items-center justify-center min-h-12 p-2">
+          {/* Adjust min-h here!~ */}
+          <div className="flex flex-col gap-3 items-center justify-center min-h-[100px] p-2 mt-4">
             <HoverCard>
               <HoverCardTrigger>
                 {/* More development: If it was a new page, we'll guide the user to a new chat page. */}
                 {/* Like if the params.id was equal to new */}
                 <div
-                  className="cursor-pointer"
+                  className="cursor-pointer hover:text-2xl"
                   onClick={() => {
                     router.push("/dialogue/new");
                   }}
                 >
-                  Create a new Dialogue
+                  New Dialogue
                   <FontAwesomeIcon
                     icon={faFeather}
                     className="text-2xl cursor-pointer"
@@ -109,18 +120,80 @@ const page = ({ params }) => {
                 Start a new chat here.
               </HoverCardContent>
             </HoverCard>
+            <HoverCard>
+              <HoverCardTrigger>
+                {/* More development: If it was a new page, we'll guide the user to a new chat page. */}
+                {/* Like if the params.id was equal to new */}
+                {/* Within this section I added Dialog */}
+                <Dialog>
+                  <DialogTrigger>
+                    <div className="cursor-pointer hover:text-2xl">
+                      AI Configuration
+                      <FontAwesomeIcon
+                        icon={faRobot}
+                        className="text-2xl cursor-pointer"
+                      />
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Are you absolutely sure?</DialogTitle>
+                      <DialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete your account and remove your data from our
+                        servers.
+                      </DialogDescription>
+                    </DialogHeader>
+                    {AIConfigMode ? "true" : "false"}
+                    <Switch
+                      defaultChecked={AIConfigMode}
+                      onCheckedChange={(c) => setAIConfigMode(c)}
+                      // id="coolaha"
+                      // defaultChecked="unchecked"
+                      // onCheckedChange={(checked) =>
+                      //   checked == "checked" ? "unchecked" : "checked"
+                      // }
+                      // onClick={(e) => console.log(e.target.dataset.state)}
+                      // onCheckedChange={(e) => {
+                      //   console.log(e.target.dataset.state);
+                      // }}
+                      // id="AIConfigMode"
+                      // check lost:to solve this problem you may get from localstorage
+                      // checked={AIConfigMode}
+                      // onCheckedChange={setAIConfigMode(
+                      //   AIConfigMode ? false : true
+                      // )}
+                      // onClick={(e) => setAIConfigMode(e.target)}
+                      // onChange={(e) => setAIConfigMode(!e.target)}
+                      // onChange={(e) => {
+                      //   setAIConfigMode(e.target);
+                      // }}
+                    />
+                    {/* {document.getElementById("coolaha")?.dataset.state} */}
+                  </DialogContent>
+                </Dialog>
+              </HoverCardTrigger>
+              <HoverCardContent className="text-sm">
+                Config AI options here.
+              </HoverCardContent>
+            </HoverCard>
           </div>
 
-          <ScrollArea className="h-full w-full ">
+          <ScrollArea className="h-full w-full">
+            <div className="text-2xl pl-4 pr-4 pt-1 pb-1 ">Recent</div>
             {data
               .sort((a, b) => b - a)
               .map((d) => (
                 <div
-                  className="flex text-2xl p-2 gap-1 cursor-pointer"
+                  className="flex pl-2 pr-2 pt-1 pb-1 cursor-pointer"
                   key={d.id}
                   onClick={() => router.push(`/dialogue/${d.id}`)}
                 >
-                  {d.title}
+                  <div className="flex items-center w-full hover:bg-slate-100 rounded-md h-10">
+                    <div className="ml-3 text-muted-foreground text-lg">
+                      {d.title}
+                    </div>
+                  </div>
                 </div>
               ))}
           </ScrollArea>
@@ -140,6 +213,11 @@ const page = ({ params }) => {
               </div>
             ))}
             {newlySentInputValue}
+            {/* Pass Server Component to Client Side */}
+            <PageServerFetch
+              newlySentInputValue={newlySentInputValue}
+              AIConfigMode={AIConfigMode ? "true" : "false"}
+            />
           </ScrollArea>
           {/* Send Messages Here */}
           <form className="flex w-full bottom-0" onSubmit={handleTextSubmit}>
