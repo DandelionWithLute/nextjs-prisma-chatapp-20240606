@@ -47,8 +47,9 @@ Server side rendering is a must through api and with client you need swr.
 An extra dialogue mode doesn't need to be stored into database, it only needs to go to api.
 AI mode: checkbox => Dialogue (no, just reverse this order with checkbox) => combobox(discarded) => Toast
 21.Add resizable to the main page.
-
-
+22.May add bearer token from flowise under/dialogue/[id]/pageServerFetch.jsxd
+23.I found it hard to combine client components and server components.
+https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#supported-pattern-passing-server-components-to-client-components-as-props
 
 
 Next Request

@@ -26,11 +26,18 @@ export const POST = async (req) => {
     message: "input should be less than 10k",
   });
 
+  const booleanSchema = z.boolean();
+
   const name = stringSchema.parse(body.name);
   const email = stringSchema.parse(body.email);
   const text = stringSchema.parse(body.text);
   const dialogueId = stringSchema.parse(body.dialogueId);
+  // The next 2 were specifically created for FlowiseAI
+  const socketIOClientId = stringSchema.parse(body.socketIOClientId);
+  const AIConfigMode = booleanSchema.parse(body.AIConfigMode);
+
   console.log(name, email, text, dialogueId);
+  console.log("API Received:" + socketIOClientId);
 
   // Authenticated account with more Validation to make sure no api leak
   if (email != user.email) return;
@@ -56,9 +63,9 @@ export const POST = async (req) => {
       },
     });
 
-    return new NextResponse(
-      JSON.stringify("Received post from /dialogue/new", { status: 200 })
-    );
+    // return new NextResponse(
+    //   JSON.stringify("Received post from /dialogue/new", { status: 200 })
+    // );
   }
 
   const saveText = await prisma.DialogueData.create({
@@ -68,7 +75,38 @@ export const POST = async (req) => {
       dialogueId,
     },
   });
-
   console.log(saveText);
+
+  // Special for Flowise
+  // Also remember to turn off the tunnel if the AIConfigMode is false
+  if (AIConfigMode) {
+    console.log("AIConfig is true!");
+    const queryFlowiseAI = async (data) => {
+      const response = await fetch(
+        "http://artdrawxl.cafa.edu.cn:3000/api/v1/prediction/fcb92f56-fceb-45e0-98bf-c5e0297de6d8",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      const result = await response.json();
+      return result;
+    };
+    queryFlowiseAI({
+      question: text,
+      socketIOClientId: socketIOClientId,
+    }).then((response) => {
+      console.log(response);
+    });
+
+    // save to db got to know the flowise response first
+    // await prisma.DialogueData.create({
+
+    // })
+  }
+
   return new NextResponse("You got it, POST finished.");
 };

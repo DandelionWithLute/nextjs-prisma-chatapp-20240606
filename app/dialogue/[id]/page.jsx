@@ -22,7 +22,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
-import PageServerFetch from "./pageServerFetch";
+// import PageServerFetch from "./pageServerFetch";
+import socketIOClient from "socket.io-client";
 
 const page = ({ params }) => {
   const { status } = useSession();
@@ -46,7 +47,72 @@ const page = ({ params }) => {
   const [newlySentInputValue, setNewlySentInputValue] = useState("");
 
   // AI Configuration Section
+  const socket = socketIOClient("http://artdrawxl.cafa.edu.cn:3000/"); //flowise url
+  const [socketIOClientId, setSocketIOClientId] = useState("");
+
+  // Don't change its boolean value in the name of api
   let [AIConfigMode, setAIConfigMode] = useState(true);
+
+  socket.on("connect", () => {
+    setSocketIOClientId(socket.id);
+    // console.log(socket.id);
+  });
+
+  //
+  //
+  //
+  //
+  //
+  // When LLM start streaming
+  socket.on("start", () => {
+    console.log("start");
+  });
+
+  // The delta token/word when streaming
+  socket.on("token", (token) => {
+    console.log("token:", token);
+  });
+
+  // Source documents returned from the chatflow
+  socket.on("sourceDocuments", (sourceDocuments) => {
+    console.log("sourceDocuments:", sourceDocuments);
+  });
+
+  // Tools used during execution
+  socket.on("usedTools", (usedTools) => {
+    console.log("usedTools:", usedTools);
+  });
+
+  // When LLM finished streaming
+  socket.on("end", () => {
+    console.log("end");
+  });
+
+  //------------------- For Multi Agents ----------------------
+
+  // The next agent in line
+  socket.on("nextAgent", (nextAgent) => {
+    console.log("nextAgent:", nextAgent);
+  });
+
+  // The whole multi agents thoughts, reasoning and output
+  socket.on("agentReasoning", (agentReasoning) => {
+    console.log("agentReasoning:", agentReasoning);
+  });
+
+  // When execution is aborted/interrupted
+  socket.on("abort", () => {
+    console.log("abort");
+  });
+  if (!AIConfigMode) {
+    socket.disconnect();
+  }
+
+  //
+  //
+  //
+  //
+  //
 
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No profile data</p>;
@@ -71,6 +137,9 @@ const page = ({ params }) => {
         email: session.user.email,
         text: inputValue,
         dialogueId: params.id,
+        // The next 2 were special made For Flowise
+        socketIOClientId,
+        AIConfigMode,
       }),
     });
     setNewlySentInputValue(inputValue);
@@ -90,13 +159,13 @@ const page = ({ params }) => {
 
   if (status === "authenticated") {
     // console.log(session);
-    let checkedValue = false;
+    // let checkedValue = false;
 
     return (
       <div className="flex h-[95vh] w-full">
         {/* Left Side: Titles */}
         {/* The Default Html Text Size is 16px. */}
-        <div className="w-[300px]">
+        <div className="w-[300px] overflow-hidden">
           {/* Adjust min-h here!~ */}
           <div className="flex flex-col gap-3 items-center justify-center min-h-[100px] p-2 mt-4">
             <HoverCard>
@@ -214,10 +283,10 @@ const page = ({ params }) => {
             ))}
             {newlySentInputValue}
             {/* Pass Server Component to Client Side */}
-            <PageServerFetch
+            {/* <PageServerFetch
               newlySentInputValue={newlySentInputValue}
               AIConfigMode={AIConfigMode ? "true" : "false"}
-            />
+            /> */}
           </ScrollArea>
           {/* Send Messages Here */}
           <form className="flex w-full bottom-0" onSubmit={handleTextSubmit}>
